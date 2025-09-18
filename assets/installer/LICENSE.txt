@@ -1,0 +1,111 @@
+BLUEPRINT FX TRADING TERMINAL
+END USER LICENSE AGREEMENT
+
+Version 2.1.0
+Copyright (c) 2024 Blueprint FX Team
+Website: https://www.blueprint-fx.space/
+Support: @blueprint_support
+
+===============================================================================
+CRITICAL RISK WARNING - READ CAREFULLY BEFORE INSTALLATION
+===============================================================================
+
+⚠️ HIGH RISK INVESTMENT WARNING
+Trading CFDs (Contracts for Difference) and Forex involves substantial risk of loss and is not suitable for all investors. Statistics show that between 74-89% of retail investor accounts lose money when trading CFDs with various providers.
+
+You should carefully consider whether you understand how CFDs work and whether you can afford to take the high risk of losing your money. Never invest more than you can afford to lose.
+
+⚠️ NO FINANCIAL ADVICE
+This software is a trading tool only. It does not provide investment advice, recommendations, or guidance. All trading decisions are your sole responsibility. Past performance does not guarantee future results.
+
+⚠️ REGULATORY COMPLIANCE
+You are responsible for ensuring compliance with all applicable financial regulations in your jurisdiction. Some jurisdictions restrict or prohibit CFD trading for retail clients.
+
+⚠️ TECHNICAL RISKS
+- Software may contain bugs or experience downtime
+- Internet connectivity issues may affect trading
+- MetaTrader 5 platform is required and provided by third parties
+- Market data delays or errors may occur
+
+===============================================================================
+LICENSE TERMS AND CONDITIONS
+===============================================================================
+
+1. GRANT OF LICENSE
+Blueprint FX grants you a non-exclusive, non-transferable license to use this software on your personal computer for trading purposes only.
+
+2. RESTRICTIONS
+- You may NOT redistribute, sell, or sublicense this software
+- You may NOT reverse engineer, decompile, or disassemble this software
+- You may NOT remove copyright notices or branding
+- Commercial use requires separate licensing agreement
+
+3. THIRD PARTY DEPENDENCIES
+This software requires and integrates with:
+- MetaTrader 5 platform (developed by MetaQuotes Software Corp.)
+- Valid broker account and credentials
+- Python runtime environment
+
+4. DATA AND PRIVACY
+- Software connects to your MT5 terminal locally
+- No trading credentials are stored by Blueprint FX
+- Local data storage for settings and preferences only
+- No data transmitted to Blueprint FX servers without consent
+
+5. DISCLAIMER OF WARRANTIES
+THIS SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT.
+
+6. LIMITATION OF LIABILITY
+IN NO EVENT SHALL BLUEPRINT FX BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE.
+
+7. TRADING RISKS ACKNOWLEDGMENT
+By using this software, you explicitly acknowledge:
+- CFD trading carries high risk of financial loss
+- Leverage can work against you as well as for you
+- Market volatility can result in rapid losses
+- You may lose more than your initial investment
+- You should not trade with money you cannot afford to lose
+
+8. USER RESPONSIBILITIES
+You agree to:
+- Use the software responsibly and within your risk tolerance
+- Maintain adequate risk management practices
+- Keep your MT5 platform and credentials secure
+- Comply with all applicable laws and regulations
+- Not hold Blueprint FX liable for trading losses
+
+9. SUPPORT AND UPDATES
+- Support available through @blueprint_support
+- Updates provided at Blueprint FX discretion
+- No guarantee of continued support or compatibility
+
+10. TERMINATION
+This license is effective until terminated. Your rights under this license will terminate automatically without notice if you fail to comply with any terms.
+
+===============================================================================
+ACCEPTANCE OF TERMS
+===============================================================================
+
+BY INSTALLING, COPYING, OR USING THIS SOFTWARE, YOU:
+
+✓ Acknowledge you have read and understood this entire agreement
+✓ Accept all risks associated with CFD and Forex trading
+✓ Agree to use the software at your own risk and responsibility
+✓ Confirm you are of legal age and capacity to enter this agreement
+✓ Understand that Blueprint FX is not liable for any trading losses
+✓ Agree to comply with all applicable laws and regulations
+
+If you do not agree to these terms, do not install or use this software.
+
+===============================================================================
+CONTACT INFORMATION
+===============================================================================
+
+Website: https://www.blueprint-fx.space/
+Telegram Support: @blueprint_support
+Email: support@blueprint-fx.space
+
+Last Updated: December 2024
+
+This agreement is governed by international software licensing standards.
+For regulatory and compliance questions, consult your local financial authority.

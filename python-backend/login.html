@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="EN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blueprint FX Terminal - Authentication</title>
+    <style>
+        :root {
+            --bg-primary: #0a0e1a;
+            --bg-secondary: #141824;
+            --bg-panel: rgba(20, 24, 36, 0.95);
+            --accent-primary: #00ffff; /* Cyan */
+            --accent-secondary: #ff00ff; /* Magenta */
+            --accent-tertiary: #8b5cf6; /* Purple */
+            --text-primary: #ffffff;
+            --text-secondary: #94a3b8;
+            --danger: #ef4444;
+            --border: rgba(139, 92, 246, 0.3);
+            --shadow-glow: 0 0 25px rgba(0, 255, 255, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .bg-animation {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.05;
+            background: 
+                radial-gradient(circle at 10% 20%, var(--accent-primary) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, var(--accent-secondary) 0%, transparent 40%);
+            animation: bgPulse 15s ease-in-out infinite;
+        }
+
+        @keyframes bgPulse {
+            0%, 100% { opacity: 0.05; transform: scale(1); }
+            50% { opacity: 0.1; transform: scale(1.05); }
+        }
+
+        .login-wrapper {
+            padding: 2px;
+            border-radius: 17px;
+            background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary), var(--accent-tertiary));
+            background-size: 400% 400%;
+            animation: animated-gradient 5s ease infinite;
+            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5), var(--shadow-glow);
+        }
+
+        @keyframes animated-gradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .login-container {
+            width: 400px;
+            background: var(--bg-panel);
+            border-radius: 15px;
+            padding: 40px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            background: linear-gradient(90deg, var(--accent-primary), var(--text-primary), var(--accent-secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+            background-size: 300% 100%;
+            animation: animated-gradient 4s ease-in-out infinite alternate;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: block;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .input-field:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.2);
+        }
+        
+        .btn-connect {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.2s ease-in-out;
+            background: linear-gradient(135deg, var(--accent-tertiary), var(--accent-primary));
+            background-size: 200% 200%;
+            color: white;
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 52px; /* Фиксированная высота для спиннера */
+        }
+
+        .btn-connect:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 30px rgba(0, 255, 255, 0.5);
+            background-position: right center;
+        }
+
+        .btn-connect:active {
+            transform: translateY(-1px) scale(0.99);
+            box-shadow: 0 2px 15px rgba(0, 255, 255, 0.4);
+        }
+        
+        .btn-connect.loading {
+            cursor: wait;
+            background: var(--bg-secondary);
+            box-shadow: none;
+            color: var(--text-secondary);
+        }
+        .btn-connect .btn-text { display: inline; }
+        .btn-connect .spinner { display: none; }
+        .btn-connect.loading .btn-text { display: none; }
+        .btn-connect.loading .spinner { display: inline-block; }
+
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--border);
+            border-top-color: var(--accent-primary);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        #status-message {
+            margin-top: 20px;
+            padding: 12px;
+            border-radius: 8px;
+            text-align: center;
+            font-size: 14px;
+            display: none;
+            background: rgba(239, 68, 68, 0.1);
+            color: var(--danger);
+            border: 1px solid var(--danger);
+        }
+        
+        #status-message.active {
+            display: block;
+            animation: shake-error 0.5s;
+        }
+
+        @keyframes shake-error {
+            0%, 100% { transform: translateX(0); }
+            10%, 30%, 50%, 70%, 90% { transform: translateX(-5px); }
+            20%, 40%, 60%, 80% { transform: translateX(5px); }
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 12px;
+            color: var(--text-secondary);
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-animation"></div>
+
+    <div class="login-wrapper">
+        <div class="login-container">
+            <div class="header">
+                <div class="logo">BluePrint</div>
+                <div class="subtitle">Trading Terminal</div>
+            </div>
+
+            <form id="loginForm">
+    <div class="input-group">
+        <label for="login" class="input-label">Login</label>
+        <input type="text" id="login" class="input-field" required autocomplete="username">
+    </div>
+    <div class="input-group">
+        <label for="password" class="input-label">Password</label>
+        <input type="password" id="password" class="input-field" required autocomplete="current-password">
+    </div>
+    <div class="input-group">
+        <label for="server" class="input-label">Server</label>
+        <select id="server" class="input-field">
+            <option value="MonetaMarkets-Live">MonetaMarkets-Live</option>
+            <option value="MonetaMarkets-Demo">MonetaMarkets-Demo</option>
+        </select>
+    </div>
+    
+    <button type="submit" class="btn-connect" id="connectButton">
+        <span class="btn-text">Connect</span>
+        <div class="spinner"></div>
+    </button>
+    
+    <div id="status-message"></div>
+</form>
+            
+            <div class="footer">
+                Version 2.1
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const connectButton = document.getElementById('connectButton');
+        const statusMessage = document.getElementById('status-message');
+
+        loginForm.addEventListener('submit', async function(event) {
+            event.preventDefault();
+            
+            connectButton.classList.add('loading');
+            connectButton.disabled = true;
+            statusMessage.classList.remove('active');
+
+            const login = document.getElementById('login').value;
+            const password = document.getElementById('password').value;
+            const server = document.getElementById('server').value;
+
+            try {
+                const response = await fetch('http://127.0.0.1:5000/connect-mt5', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ login, password, server })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    // Успех! Сохраняем "билет" и переходим на терминал
+                    sessionStorage.setItem('isAuthenticated', 'true');
+                    window.location.href = '/terminal';
+                } else {
+                    // Показываем ошибку от сервера
+                    showError(data.error || 'Unknown connection error');
+                }
+
+            } catch (error) {
+                console.error('Fetch error:', error);
+                showError('Server is not available. Please start the server and try again.');
+            }
+        });
+
+        function showError(message) {
+            statusMessage.textContent = message;
+            statusMessage.classList.add('active');
+
+            setTimeout(() => statusMessage.classList.remove('active'), 500);
+
+            connectButton.classList.remove('loading');
+            connectButton.disabled = false;
+        }
+    </script>
+</body>
+</html>

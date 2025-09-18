@@ -1,0 +1,35 @@
+# Blueprint Terminal - Python Dependencies
+# Core MetaTrader 5 integration
+MetaTrader5>=5.0.45
+
+# Web server and API
+Flask>=2.3.0
+flask-cors>=4.0.0
+
+# WebSocket server for real-time communication  
+websockets>=11.0.3
+
+# Async support (built-in with Python 3.7+, but explicit for clarity)
+# asyncio - built-in module
+
+# Date and time handling
+python-dateutil>=2.8.2
+
+# JSON handling (built-in, but some extended features)
+jsonschema>=4.17.0
+
+# Logging and configuration
+pyyaml>=6.0
+
+# System utilities
+psutil>=5.9.0
+
+# Cryptography for secure operations (optional but recommended)
+cryptography>=41.0.0
+
+# HTTP client for external APIs (if needed)
+requests>=2.31.0
+
+# Development and debugging (optional)
+# pytest>=7.4.0
+# black>=23.0.0
